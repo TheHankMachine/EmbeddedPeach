@@ -10,18 +10,18 @@ class HardClip : public Transform {
     float threshold;
 
     void init() {
-        this->gain = 1.0f;
-        this->threshold = 1.0f;
+        gain = 1.0f;
+        threshold = 1.0f;
     }
 
     float process(float sample) {
-        float value = sample * this->gain;
+        float value = sample * gain;
         
-        if (value > this->threshold) {
-            return this->threshold;
+        if (value > threshold) {
+            return threshold;
         }
-        if (value < -this->threshold) {
-            return -this->threshold;
+        if (value < -threshold) {
+            return -threshold;
         }
 
         return value;
@@ -29,8 +29,8 @@ class HardClip : public Transform {
 
     void set_param(int param_id, float value) {
         switch (param_id) {
-            case 0: this->gain = value;         return;
-            case 1: this->threshold = value;    return;
+            case 0: gain = value;         return;
+            case 1: threshold = value;    return;
         }
     }
 
@@ -55,18 +55,18 @@ class SoftClip : public Transform {
     float limit;
 
     void init() {
-        this->drive = 1.0f;
-        this->limit = 1.0f;
+        drive = 1.0f;
+        limit = 1.0f;
     }
 
     float process(float sample) {
-        return this->limit = soft_clip(this->drive * sample);
+        return limit = soft_clip(drive * sample);
     }
 
     void set_param(int param_id, float value) {
         switch (param_id) {
-            case 0: this->drive = value; return;
-            case 1: this->limit = value; return;
+            case 0: drive = value; return;
+            case 1: limit = value; return;
         }
     }
 

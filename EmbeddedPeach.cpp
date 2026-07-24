@@ -19,15 +19,14 @@ void AudioCallback(AudioHandle::InterleavingInputBuffer in, AudioHandle::Interle
 	}
 }
 
-int main(void)
-{
+int main(void) {
 	hw.Configure();
 	hw.Init();
 
 	hw.SetAudioBlockSize(32); // number of samples handled per callback
 	hw.SetAudioSampleRate(SaiHandle::Config::SampleRate::SAI_48KHZ);
 
-	// board.add<mono::distortion::HardClip>();
+	board.add<mono::Wah>();
 	// board.get(0)->set_param(0, 7.0f);
 	// board.get(0)->set_param(1, 0.3f);
 
@@ -35,7 +34,7 @@ int main(void)
 
 	// hw.StartAudio(AudioCallback);
 
-	hw.usb_handle.Init(UsbHandle::FS_INTERNAL);
+	// hw.usb_handle.Init(UsbHandle::FS_INTERNAL);
 	// hw.usb_handle.SetReceiveCallback(UsbCallback, UsbHandle::FS_INTERNAL);
 
 	int i = 0;
@@ -44,10 +43,10 @@ int main(void)
 
         hw.SetLed(true);
 		
-		char buff[512];
-		sprintf(buff, "Tick:\t%d\r\n", i);
-    	hw.usb_handle.TransmitInternal((uint8_t*)buff, strlen(buff));
-		i++;
+		// char buff[512];
+		// sprintf(buff, "Tick:\t%d\r\n", i);
+    	// hw.usb_handle.TransmitInternal((uint8_t*)buff, strlen(buff));
+		// i++;
 
         System::Delay(100);
 

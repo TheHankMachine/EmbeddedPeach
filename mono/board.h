@@ -5,14 +5,14 @@
 #include <concepts>
 #include "transform/transform.h"
 #include "transform/distortion.h"
-#include "transform/octave.h"
+#include "transform/wah.h"
 
 static const uint16_t POOL_SIZE = 4;
 static const uint16_t MAX_EFFECTS = 4;
 
 namespace mono {
 
-using TransformVariant = std::variant<distortion::SoftClip, distortion::HardClip, octaver::Up>;
+using TransformVariant = std::variant<distortion::SoftClip, distortion::HardClip, Wah>;
 
 class Board {
 
